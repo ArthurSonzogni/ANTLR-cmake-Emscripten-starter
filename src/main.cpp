@@ -17,6 +17,9 @@ int main(int, const char **) { return 0; }
 extern "C" {
 
 void translate(const char *input) {
+  // Clear the error textarea.
+  emscripten_run_script("errors.value = '';");
+
   antlr4::ANTLRInputStream input_stream(input);
 
   // Apply Lexer.
@@ -32,13 +35,15 @@ void translate(const char *input) {
   analysis::DisplayTree tree = analysis::display_tree(expression);
 
   std::string command;
-  command += "output.value='";
+  command += "output.value ='";
   for (const auto &line : tree.content) {
     command += line + "\\n";
   }
   command += "'";
+
   emscripten_run_script(command.c_str());
 }
+
 }
 
 #else

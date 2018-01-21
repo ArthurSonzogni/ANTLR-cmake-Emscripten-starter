@@ -20,6 +20,7 @@ if (Web)
   string(APPEND CMAKE_CXX_FLAGS " --no-heap-copy")
   string(APPEND CMAKE_CXX_FLAGS " -s EXPORTED_FUNCTIONS='[\"_translate\"]'")
   string(APPEND CMAKE_CXX_FLAGS " -s EXTRA_EXPORTED_RUNTIME_METHODS='[\"ccall\",\" cwrap\"]'")
+  string(APPEND CMAKE_CXX_FLAGS " -s DISABLE_EXCEPTION_CATCHING=0")
 
   configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/index.html
